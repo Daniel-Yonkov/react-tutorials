@@ -70,5 +70,15 @@ const rootElement = document.getElementById('root');
 /* valid example */
 element = <SayHelloAsClass firstName='Daniel' lastName='Yonkov' />
 
+/* usage of ternary operator in JSX as IF is not recognized: */
 
+function Message({message}) {
+  return (
+    message ? 
+    <div>{message}</div> :
+    <div>No Message</div>
+    )
+}
+
+element = <Message message={null} />
 ReactDOM.render(element,rootElement);
