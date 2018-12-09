@@ -79,6 +79,34 @@ function Message({message}) {
     <div>No Message</div>
     )
 }
-
 element = <Message message={null} />
 ReactDOM.render(element,rootElement);
+
+/** Basics of rerendering. */
+//Refreshes only the value
+function tick() {
+  const time = new Date().toLocaleTimeString();
+  const element = (
+    <div>
+      It is 
+      <input value={time} />
+    </div>
+  );
+  ReactDOM.render(element,document.getElementById('root'));
+}
+tick();
+setInterval(tick, 1000);
+
+// //refreshes all the template - loses focus and interactivity. BAD EXAMPLE!
+
+// function pureTick() {
+//   const time = new Date().toLocaleTimeString();
+//   const element = `<div>
+//       It is 
+//       <input value="${time}" />
+//     </div>`;
+
+//     rootElement.innerHTML = element;
+// }
+// pureTick();
+// setInterval(pureTick, 1000);
