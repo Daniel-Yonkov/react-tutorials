@@ -173,7 +173,14 @@ function renderApp() {
 renderApp();
 
 class StopWatch extends React.Component {
-  state = {time:0, running:false}
+  constructor(props) {
+    super(props);
+    this.state = {
+      time:0, 
+      running:false,
+    } 
+    this.timer
+  }
 
   handleTimer = () => {
     this.setState(state => {
