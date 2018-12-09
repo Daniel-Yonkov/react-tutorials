@@ -134,3 +134,40 @@ element = (
 )
 
 ReactDOM.render(element,rootElement);
+
+/** Event Handlers */
+
+const state = {counter:0, userName:''};
+const App = () => {
+  return (
+    <div>
+      <p>There have been {state.counter} events</p>
+      <p>
+        <button onClick={() => setState({counter: state.counter + 1})}>press me</button>
+      </p>
+      <p>You typed: {state.userName}</p>
+      <input onChange={setUsername} />
+    </div>
+    )
+}
+function clickEvent() {
+  setState({
+    counter: state.counter + 1
+  })
+}
+
+function setUsername(event) {
+  setState({
+    userName: event.target.value,
+  })
+}
+
+function setState(newState) {
+  Object.assign(state, newState);
+  renderApp();
+}
+
+function renderApp() {
+  ReactDOM.render(<App />,document.getElementById('root'));  
+}
+renderApp();
