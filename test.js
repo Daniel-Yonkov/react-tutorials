@@ -206,6 +206,11 @@ class StopWatch extends React.Component {
     });
     clearInterval(this.timer);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
       <div>
