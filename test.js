@@ -83,19 +83,19 @@ element = <Message message={null} />
 ReactDOM.render(element,rootElement);
 
 /** Basics of rerendering. */
-//Refreshes only the value
-function tick() {
-  const time = new Date().toLocaleTimeString();
-  const element = (
-    <div>
-      It is 
-      <input value={time} />
-    </div>
-  );
-  ReactDOM.render(element,document.getElementById('root'));
-}
-tick();
-setInterval(tick, 1000);
+//Refreshes only the value - uncoment to see it in action
+// function tick() {
+//   const time = new Date().toLocaleTimeString();
+//   const element = (
+//     <div>
+//       It is 
+//       <input value={time} />
+//     </div>
+//   );
+//   ReactDOM.render(element,document.getElementById('root'));
+// }
+// tick();
+// setInterval(tick, 1000);
 
 // //refreshes all the template - loses focus and interactivity. BAD EXAMPLE!
 
@@ -110,3 +110,27 @@ setInterval(tick, 1000);
 // }
 // pureTick();
 // setInterval(pureTick, 1000);
+
+/* Inline style and class definition in react components 
+ * keep in mind that for interpolation we use BAT ticks `...`
+ */
+const Box = ({style, className='', size, ...props}) =>{
+  const boxSize = size ? `box--${size}` : '';
+  return (
+    <div className = {`box ${className} ${boxSize}`.trim()}
+      style={{paddingLeft:20,...style}}
+      {...props}
+    >
+    {props.children}
+    </div>
+    );
+}
+element = (
+  <div>
+    <Box style={{backgroundColor:'lightblue'}} >Small box</Box>
+    <Box style={{backgroundColor:'pink'}} className='box--medium'>Medium box</Box>
+    <Box style={{backgroundColor:'lightgreen'}} size='large'>Large box</Box>
+  </div>
+)
+
+ReactDOM.render(element,rootElement);
