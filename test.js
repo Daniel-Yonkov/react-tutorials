@@ -171,3 +171,44 @@ function renderApp() {
   ReactDOM.render(<App />,document.getElementById('root'));  
 }
 renderApp();
+
+class StopWatch extends React.Component {
+  state = {time:0, running:false}
+
+  handleTimer = () => {
+    this.setState(state => {
+      if(state.running) {
+        clearInterval(this.timer)
+      }
+      else {
+      const startTime = Date.now() - this.state.time;
+      this.timer = setInterval(() => {
+        this.setState({
+          time: Date.now() - startTime
+        })
+      })
+    }
+    return {running: !state.running}
+  })
+}
+
+  clearTimer = () => {
+    this.setState({
+      time:0,
+      running:false,
+    });
+    clearInterval(this.timer);
+  }
+  render() {
+    return (
+      <div>
+        <p> Time elapsed in miliseconds: {this.state.time}</p>
+        <button onClick={this.handleTimer}>{this.state.running? 'Stop' : 'Start'}</button>
+        <button onClick={this.clearTimer}>Clear</button>
+      </div>
+      )
+  }
+}
+
+
+ReactDOM.render(<StopWatch />,rootElement);
